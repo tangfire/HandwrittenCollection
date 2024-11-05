@@ -1,10 +1,15 @@
-package com.fire.list;
+package com.fire.list2;
+
+import com.fire.list.Iterator;
+import com.fire.list1.Node;
 
 public interface List {
 
     public int size();
 
     public boolean isEmpty();
+
+    public Object remove(int index);
 
     public Object get(int index);
 

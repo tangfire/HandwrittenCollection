@@ -2,6 +2,7 @@ package com.fire.list;
 
 import java.util.Arrays;
 
+
 public class ArrayList implements List {
 
     // ArrayList底层是一个长度可以动态增长的数组 elementData是数组的引用
@@ -17,8 +18,28 @@ public class ArrayList implements List {
         elementData = new Object[initialCapacity];
     }
 
+    @Override
+    public Iterator iterator() {
+        return new Itr();
+    }
 
+    private class Itr<T> implements Iterator<T> {
+        int cursor = 0;
 
+        @Override
+        public boolean hashNext() {
+            return cursor != size;
+        }
+
+        @Override
+        public T next() {
+            if(cursor >= size) {
+                throw new IndexOutOfBoundsException("数组越界");
+            }
+
+            return (T)elementData[cursor++];
+        }
+    }
 
     @Override
     public int size() {
@@ -51,6 +72,33 @@ public class ArrayList implements List {
 
         elementData[index] = e;
         size++;
+    }
+
+
+    @Override
+    public boolean contains(Object e) {
+        return indexOf(e) >= 0;
+    }
+
+    @Override
+    public int indexOf(Object e) {
+        int index = -1;
+        if(e==null){
+            for (int i = 0; i < size; i++) {
+                if(elementData[i]==e){
+                    index = i;
+                    break;
+                }
+            }
+        }else{
+            for (int i = 0; i < size; i++) {
+                if(e.equals(elementData[i])){
+                    index = i;
+                    break;
+                }
+            }
+        }
+        return index;
     }
 
     @Override

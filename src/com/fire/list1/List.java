@@ -1,4 +1,6 @@
-package com.fire.list;
+package com.fire.list1;
+
+import com.fire.list.Iterator;
 
 public interface List {
 
@@ -6,7 +8,9 @@ public interface List {
 
     public boolean isEmpty();
 
-    public Object get(int index);
+    public Object remove(int index);
+
+    public Node get(int index);
 
     public void add(Object e);
 
